@@ -58,6 +58,7 @@ export class TimerComponent extends LitElement {
   }
 
   startTimer() {
+    
     this.intervalId = setInterval(() => {
       this.contadorDeSegundos--;
       this.divideTiempo();

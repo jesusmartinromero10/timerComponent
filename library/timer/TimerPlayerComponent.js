@@ -106,13 +106,22 @@ export class TimerPlayerComponent extends LitElement {
   }
 
   play() {
-    this.timer.startTimer();
-    this.status = 'Contando';
+    if(this.botonPlay){
+        this.timer.startTimer();
+        this.status = 'Contando';
+        this.botonPlay= !this.botonPlay
+        this.botonPause= true
+    }
   }
 
   pause() {
-    this.timer.pauseTimer();
-    this.status = 'Pausado';
+      if(this.botonPause){
+          this.timer.pauseTimer();
+          this.botonPlay= !this.botonPlay
+          this.status = 'Pausado';
+          this.botonPause = !this.botonPause
+
+      }
   }
 
   reset() {
