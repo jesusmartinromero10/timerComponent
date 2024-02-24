@@ -9,13 +9,13 @@ export class TimerComponent extends LitElement {
     segundos: { type: Number, state: true },
     format: { type: String, attribute: true },
     start: { type: Number },
-    join: { type: String, attribute: true },
   };
 
   static styles = css`
   :host {
     display: flex;
     justify-content: center; 
+    color:blue;
 }
 
   `;
@@ -24,7 +24,6 @@ export class TimerComponent extends LitElement {
     super();
     this.start = 0;
     this.format = 'HH:MM:SS';
-    this.join = ':';
     this.finishEvent = new CustomEvent('tiempoAcabado', {
       bubbles: true,
       composed: true,
@@ -152,16 +151,16 @@ timerTemplate() {
     
     const arrayTiempo = this.format.split(':');
 
-    const templates = html`${arraySinDosPuntos.map(
-              (value, index) => html`
-                <time-part-component
-                  value="${value}"
-                  format="${arrayTiempo[index]}"
-                ></time-part-component>
-              `
-            )}`;
-
-    return html`${templates}`;
+    return html`${arraySinDosPuntos.map(
+        (value, index) => html`
+          <time-part-component
+            value="${value}"
+            format="${arrayTiempo[index]}"
+          ></time-part-component>
+          
+          ${index + 1 < arraySinDosPuntos.length ? ':' : ''}
+        `
+      )}`;
 }
 
 
