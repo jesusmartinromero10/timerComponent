@@ -1,5 +1,4 @@
 import { LitElement, css, html } from 'lit';
-//import { TimerComponent } from './TimerComponent.js';
 
 export class TimerPlayerComponent extends LitElement {
   static properties = {
@@ -127,6 +126,7 @@ export class TimerPlayerComponent extends LitElement {
   reset() {
     this.timer.resetTimer();
     this.status = 'Empezamos';
+    this.botonPlay= true;
   }
 }
 customElements.define('timer-player-component', TimerPlayerComponent);

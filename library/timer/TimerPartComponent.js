@@ -31,6 +31,7 @@ export class TimerPartComponent extends LitElement {
             <div>${this.formatTime(this.value)}</div>
         `;
     }
+    
 
     formatTime(time) {
         //console.log('format',this.format)

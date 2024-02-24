@@ -9,6 +9,8 @@ export class TimerComponent extends LitElement {
     segundos: { type: Number, state: true },
     format: { type: String, attribute: true },
     start: { type: Number },
+    autoplay:{type:Boolean, attribute:true},
+    reverse: {type:Boolean, attribute:true}
   };
 
   static styles = css`
@@ -23,6 +25,8 @@ export class TimerComponent extends LitElement {
   constructor() {
     super();
     this.start = 0;
+    this.autoplay=false;
+    this.reverse=false;
     this.format = 'HH:MM:SS';
     this.finishEvent = new CustomEvent('tiempoAcabado', {
       bubbles: true,
@@ -41,10 +45,14 @@ export class TimerComponent extends LitElement {
       composed: true,
     });
   }
+  
 
   connectedCallback() {
     super.connectedCallback();
     this.resetValues();
+    if(this.autoplay){
+      this.startTimer()
+    }
   }
 
   disconnectedCallback() {
@@ -59,7 +67,7 @@ export class TimerComponent extends LitElement {
   startTimer() {
     
     this.intervalId = setInterval(() => {
-      this.contadorDeSegundos--;
+      this.reverse ? this.contadorDeSegundos++ : this.contadorDeSegundos--;
       this.divideTiempo();
       if (this.contadorDeSegundos === 0) {
         clearInterval(this.intervalId); // Detiene el intervalo
