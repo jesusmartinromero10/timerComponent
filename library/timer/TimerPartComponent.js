@@ -17,7 +17,7 @@ export class TimerPartComponent extends LitElement {
 
     static styles = css`
         :host {
-            color: blue;
+            color: red;
             background-color: lightgray;
             padding: 5px;
             border-radius: 5px;

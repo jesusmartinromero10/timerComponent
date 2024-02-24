@@ -13,14 +13,11 @@ export class TimerComponent extends LitElement {
   };
 
   static styles = css`
-    :host {
-      display: flex;
-      justify-content: var(--timer-component-justify-content, center);
-    }
+  :host {
+    display: flex;
+    justify-content: center; 
+}
 
-    .timer-component_join {
-      padding: var(--timer-component-join-padding);
-    }
   `;
 
   constructor() {

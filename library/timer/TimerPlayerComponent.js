@@ -23,52 +23,49 @@ export class TimerPlayerComponent extends LitElement {
   static styles = css`
     :host {
       display: flex;
-      justify-content: var(--timer-player-component-justify-content, center);
-      flex-direction: var(--timer-player-component-flex-direction, column);
+      justify-content: center;
+      flex-direction: column;
     }
 
-    .timer-player-component_status {
-      color: var(--timer-player-component-status-color);
-      font-size: var(--timer-player-component-status-font-size);
-      text-align: var(--timer-player-component-status-text-align, center);
-      margin: var(--timer-player-component-status-margin);
-      padding: var(--timer-player-component-status-padding);
+    .status {
+      color: #000; /* Color de texto para el estado */
+      font-size: 16px; /* Tamaño de fuente para el estado */
+      text-align: center; /* Alineación del texto del estado */
+      margin: 10px 0; /* Margen del estado */
+      padding: 10px; /* Relleno del estado */
     }
 
-    .timer-player-component__actions {
+    .action {
       display: flex;
-      flex-wrap: var(--timer-player-component-actions-flex-wrap, wrap);
-      justify-content: var(
-        --timer-player-component-actions-justify-content,
-        center
-      );
-      flex-direction: var(--timer-player-component-actions-flex-direction, row);
-      margin: var(--timer-player-component-actions-margin);
+      justify-content: center;
+      flex-wrap: wrap;
+      flex-direction: row;
+      margin: 20px 0; /* Margen de las acciones */
     }
 
     button {
       cursor: pointer;
-      padding: var(--timer-player-component-button-padding);
-      margin: var(--timer-player-component-button-margin);
-      border-radius: var(--timer-player-component-button-border-radius);
+      padding: 10px 20px; /* Relleno de los botones */
+      margin: 5px; /* Margen de los botones */
+      border-radius: 5px; /* Radio del borde de los botones */
     }
 
-    button.timer-player-component__actions--play {
-      background-color: var(--timer-player-component-play-background-color);
-      color: var(--timer-player-component-play-color);
-      border: var(--timer-player-component-play-border);
+    button.action--play {
+      background-color: #28a745; /* Color de fondo del botón de reproducción */
+      color: #fff; /* Color de texto del botón de reproducción */
+      border: none; /* Borde del botón de reproducción */
     }
 
-    button.timer-player-component__actions--pause {
-      background-color: var(--timer-player-component-pause-background-color);
-      color: var(--timer-player-component-pause-color);
-      border: var(--timer-player-component-pause-border);
+    button.action--pause {
+      background-color: #dc3545; /* Color de fondo del botón de pausa */
+      color: #fff; /* Color de texto del botón de pausa */
+      border: none; /* Borde del botón de pausa */
     }
 
-    button.timer-player-component__actions--reset {
-      background-color: var(--timer-player-component-reset-background-color);
-      color: var(--timer-player-component-reset-color);
-      border: var(--timer-player-component-reset-border);
+    button.action--reset {
+      background-color: #007bff; /* Color de fondo del botón de reinicio */
+      color: #fff; /* Color de texto del botón de reinicio */
+      border: none; /* Borde del botón de reinicio */
     }
   `;
 
@@ -83,27 +80,27 @@ export class TimerPlayerComponent extends LitElement {
 
   render() {
     return html`
-      <div class="timer-player-component_status">${this.status}</div>
+      <div class="status">${this.status}</div>
       <slot></slot>
-      <div class="timer-player-component__actions">
+      <div class="action">
         <button
-              class="timer-player-component__actions--pause"
-              @click="${this.pause}"
-            >
-              Pause
-            </button>
+          class="action--pause"
+          @click="${this.pause}"
+        >
+          Pause
+        </button>
         <button
-              class="timer-player-component__actions--play"
-              @click="${this.play}"
-            >
-              Play
-            </button>
-       <button
-              class="timer-player-component__actions--reset"
-              @click="${this.reset}"
-            >
-              Reset
-            </button>
+          class="action--play"
+          @click="${this.play}"
+        >
+          Play
+        </button>
+        <button
+          class="action--reset"
+          @click="${this.reset}"
+        >
+          Reset
+        </button>
       </div>
     `;
   }
@@ -115,7 +112,7 @@ export class TimerPlayerComponent extends LitElement {
 
   pause() {
     this.timer.pauseTimer();
-    this.status = "Pausado"
+    this.status = 'Pausado';
   }
 
   reset() {
